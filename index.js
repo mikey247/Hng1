@@ -20,6 +20,34 @@ app.get("/", (req, res) => {
   });
 });
 
+app.post("/", (req, res) => {
+  const { operation_type, x, y } = req.body;
+
+  if (operation_type.trim() === "subtraction") {
+    res.status(200).json({
+      slackUsername: "mikey",
+      result: x - y,
+      operation_type,
+    });
+  }
+
+  if (operation_type.trim() === "addition") {
+    res.status(200).json({
+      slackUsername: "mikey",
+      result: x + y,
+      operation_type,
+    });
+  }
+
+  if (operation_type.trim() === "multiplication") {
+    res.status(200).json({
+      slackUsername: "mikey",
+      result: x * y,
+      operation_type,
+    });
+  }
+});
+
 const port = 3000;
 
 app.listen(port, () => {
