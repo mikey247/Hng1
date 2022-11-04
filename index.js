@@ -32,7 +32,7 @@ app.post("/calculate", (req, res) => {
 
   switch (operation_type) {
     case Enum.subtraction:
-      res.status(201).send({
+      res.status(200).send({
         slackUsername: "mikey",
         result: x - y,
         operation_type,
@@ -40,7 +40,7 @@ app.post("/calculate", (req, res) => {
       break;
 
     case Enum.addition:
-      res.status(201).send({
+      res.status(200).send({
         slackUsername: "mikey",
         result: x + y,
         operation_type: operation_type,
@@ -48,7 +48,7 @@ app.post("/calculate", (req, res) => {
       break;
 
     case Enum.multiplication:
-      res.status(201).send({
+      res.status(200).send({
         slackUsername: "mikey",
         result: x * y,
         operation_type,
