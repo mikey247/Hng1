@@ -37,6 +37,7 @@ app.post("/", (req, res) => {
         result: x - y,
         operation_type,
       });
+      break;
 
     case Enum.addition:
       res.status(201).send({
@@ -44,6 +45,7 @@ app.post("/", (req, res) => {
         result: x + y,
         operation_type: operation_type,
       });
+      break;
 
     case Enum.multiplication:
       res.status(201).send({
@@ -51,6 +53,7 @@ app.post("/", (req, res) => {
         result: x * y,
         operation_type,
       });
+      break;
   }
 });
 
