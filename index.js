@@ -27,33 +27,30 @@ const Enum = Object.freeze({
 });
 
 app.post("/calculate", (req, res) => {
-  // console.log(req.body);
   const { operation_type, x, y } = req.body;
 
-  switch (operation_type) {
-    case Enum.subtraction:
-      res.status(200).send({
-        slackUsername: "mikey",
-        result: x - y,
-        operation_type,
-      });
-      break;
+  if (operation_type.trim() === "subtraction") {
+    res.status(200).json({
+      slackUsername: "mikey",
+      result: x - y,
+      operation_type,
+    });
+  }
 
-    case Enum.addition:
-      res.status(200).send({
-        slackUsername: "mikey",
-        result: x + y,
-        operation_type: operation_type,
-      });
-      break;
+  if (operation_type.trim() === "addition") {
+    res.status(200).json({
+      slackUsername: "mikey",
+      result: x + y,
+      operation_type,
+    });
+  }
 
-    case Enum.multiplication:
-      res.status(200).send({
-        slackUsername: "mikey",
-        result: x * y,
-        operation_type,
-      });
-      break;
+  if (operation_type.trim() === "multiplication") {
+    res.status(200).json({
+      slackUsername: "mikey",
+      result: x * y,
+      operation_type,
+    });
   }
 });
 
@@ -63,26 +60,28 @@ app.listen(port, () => {
   console.log(`App running on port ${port}...🏃🏾‍♂️💨`);
 });
 
-// if (operation_type.trim() === "subtraction") {
-// res.status(200).json({
-//   slackUsername: "mikey",
-//   result: x - y,
-//   operation_type,
-// });
-// }
+// switch (operation_type) {
+//   case Enum.subtraction:
+//     res.status(200).send({
+//       slackUsername: "mikey",
+//       result: x - y,
+//       operation_type,
+//     });
+//     break;
 
-// if (operation_type.trim() === "addition") {
-// res.status(200).json({
-//   slackUsername: "mikey",
-//   result: x + y,
-//   operation_type,
-// });
-// }
+//   case Enum.addition:
+//     res.status(200).send({
+//       slackUsername: "mikey",
+//       result: x + y,
+//       operation_type: operation_type,
+//     });
+//     break;
 
-// if (operation_type.trim() === "multiplication") {
-// res.status(200).json({
-//   slackUsername: "mikey",
-//   result: x * y,
-//   operation_type,
-// });
+//   case Enum.multiplication:
+//     res.status(200).send({
+//       slackUsername: "mikey",
+//       result: x * y,
+//       operation_type,
+//     });
+//     break;
 // }
