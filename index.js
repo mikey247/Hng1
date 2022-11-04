@@ -11,14 +11,14 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.status(200).json({
-    slackUsername: "mikey",
-    backend: true,
-    age: 23,
-    bio: "Recent graduate,working towards becoming a backend ninja",
-  });
-});
+// app.get("/", (req, res) => {
+//   res.status(200).json({
+//     slackUsername: "mikey",
+//     backend: true,
+//     age: 23,
+//     bio: "Recent graduate,working towards becoming a backend ninja",
+//   });
+// });
 
 const Enum = Object.freeze({
   subtraction: "subtraction",
@@ -26,7 +26,7 @@ const Enum = Object.freeze({
   multiplication: "multiplication",
 });
 
-app.post("/calculate", (req, res) => {
+app.post("/", (req, res) => {
   const { operation_type, x, y } = req.body;
 
   if (operation_type.trim() === "subtraction") {
