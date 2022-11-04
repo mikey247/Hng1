@@ -26,7 +26,7 @@ const Enum = Object.freeze({
   multiplication: "multiplication",
 });
 
-app.post("/", (req, res) => {
+app.post("/calculate", (req, res) => {
   // console.log(req.body);
   const { operation_type, x, y } = req.body;
 
