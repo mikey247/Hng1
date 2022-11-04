@@ -27,33 +27,30 @@ const Enum = Object.freeze({
 });
 
 app.post("/", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { operation_type, x, y } = req.body;
 
-  switch (operation_type.value) {
+  switch (operation_type) {
     case Enum.subtraction:
-      res.status(200).json({
+      res.status(201).send({
         slackUsername: "mikey",
         result: x - y,
         operation_type,
       });
 
     case Enum.addition:
-      res.status(200).json({
+      res.status(201).send({
         slackUsername: "mikey",
         result: x + y,
-        operation_type: operation_type.value,
+        operation_type: operation_type,
       });
 
     case Enum.multiplication:
-      res.status(200).json({
+      res.status(201).send({
         slackUsername: "mikey",
         result: x * y,
         operation_type,
       });
-
-    default:
-      break;
   }
 });
 
