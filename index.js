@@ -27,30 +27,36 @@ const Enum = Object.freeze({
 });
 
 app.post("/", (req, res) => {
-  const { operation_type, x, y } = req.body;
-
-  if (operation_type.trim() === "subtraction") {
-    res.status(200).json({
-      slackUsername: "mikey",
-      result: x - y,
-      operation_type,
-    });
+  const { x, y, operation_type } = req.body;
+  const operation_types = ["addition", "subtraction", "multiplication"];
+  if (!operation_types.includes(operation_type)) {
+    return res
+      .status(400)
+      .json({ message: "Invalid operation type provided." });
+  }
+  let result;
+  switch (operation_type) {
+    case "addition":
+      result = x + y;
+      break;
+    case "subtraction":
+      result = x - y;
+      break;
+    case "multiplication":
+      result = x * y;
+      break;
+    default:
+      break;
   }
 
-  if (operation_type.trim() === "addition") {
-    res.status(200).json({
-      slackUsername: "mikey",
-      result: x + y,
-      operation_type,
-    });
-  }
-
-  if (operation_type.trim() === "multiplication") {
-    res.status(200).json({
-      slackUsername: "mikey",
-      result: x * y,
-      operation_type,
-    });
+  if (!result) {
+    return res
+      .status(400)
+      .json({ message: "Can't proceed with request because input is empty." });
+  } else {
+    return res
+      .status(200)
+      .json({ slackUsername: "mikey", operation_type, result });
   }
 });
 
@@ -59,6 +65,32 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App running on port ${port}...🏃🏾‍♂️💨`);
 });
+
+// const { operation_type, x, y } = req.body;
+
+//   if (operation_type.trim() === "subtraction") {
+//     res.status(200).json({
+//       slackUsername: "mikey",
+//       result: x - y,
+//       operation_type,
+//     });
+//   }
+
+//   if (operation_type.trim() === "addition") {
+//     res.status(200).json({
+//       slackUsername: "mikey",
+//       result: x + y,
+//       operation_type,
+//     });
+//   }
+
+//   if (operation_type.trim() === "multiplication") {
+//     res.status(200).json({
+//       slackUsername: "mikey",
+//       result: x * y,
+//       operation_type,
+//     });
+//   }
 
 // switch (operation_type) {
 //   case Enum.subtraction:
